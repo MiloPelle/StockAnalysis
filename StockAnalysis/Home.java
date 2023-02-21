@@ -1,8 +1,9 @@
 package StockAnalysis;
+import java.io.IOException;
 import java.util.Scanner;
 public class Home{
 
-    public static void main(String[] args){            
+    public static void main(String[] args) throws IOException{            
 
         System.out.printf("--------------------------------%n");
         System.out.printf("         Stock Analysis         %n");
@@ -21,9 +22,9 @@ public class Home{
             if(option.equals("1")){
                AddStock.a();
             }else if(option.equals("2")){
-               Boolean OpenStock=true;
+               System.out.println("Not Availible");
             }else if(option.equals("3")){
-                int n = 3;
+                System.out.println("Not Availible");
             }
         }
     }

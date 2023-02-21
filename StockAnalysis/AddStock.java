@@ -8,22 +8,28 @@ import java.net.URLConnection;
 import java.util.Scanner;
 public class AddStock{
 
-    public static void a(){
-        try (Scanner tikSymbol = new Scanner(System.in)) {
-        String tickerSymbol = tikSymbol.next();
+    public static void a() throws IOException{
+        String tickerSymbol;
         System.out.println("");
         System.out.println("Enter Ticker Sysmbol:");
-        ab();
+        try (Scanner tikSymbol = new Scanner(System.in)) {
+        tickerSymbol = tikSymbol.next();
     }
+             String st = "http://finance.yahoo.com/quote/"+tickerSymbol+"?p="+tickerSymbol+"&.tsrc=fin-srch";
+             URL searchStock = new URL(st);
+            
+            // Get the input stream through URL Connection
+            URLConnection con = searchStock.openConnection();
+            InputStream is = con.getInputStream();
+            try(BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+                String line = null;
+            
+                // read each line and write to System.out
+                while ((line = br.readLine()) != null){
+                    System.out.println(line);
+                }
+
     
 }
-    private static void ab() {
-        WebDriver driver = new Html();
-        driver.get("http://www.google.com");
-        WebElement element = driver.findElement(By.name("q"));
-        element.sendKeys("finance.yahoo.com/quote/"+tickerSymbol+"?p="+tickerSymbol+"&.tsrc=fin-srch");
-        // Now submit the form. WebDriver will find the form for us from the element
-        element.submit();
     }
-    
 }
