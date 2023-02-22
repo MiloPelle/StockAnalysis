@@ -20,7 +20,7 @@ public class Home{
        try (Scanner choseOption = new Scanner(System.in)) {
             String option = choseOption.next();
             if(option.equals("1")){
-               AddStock.a();
+               SearchStock.search();
             }else if(option.equals("2")){
                System.out.println("Not Availible");
             }else if(option.equals("3")){
