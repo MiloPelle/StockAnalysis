@@ -22,10 +22,17 @@ public class SearchStock {
         tickerSymbol = tikSymbol.next();
     }
              String URL = "http://finance.yahoo.com/quote/"+tickerSymbol+"?p="+tickerSymbol+"&.tsrc=fin-srch";
+                System.out.println("Gathering Stock Info");
                 Document doc = Jsoup.connect(URL).get();
-                Elements contentA = doc.getElementsByClass("C($primaryColor) Fz(24px) Fw(b)");
-                for(Element v: contentA)
-                System.out.println(v.text());
-}  
+                Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
+                Elements contentC = doc.getElementsByClass("Bxz(bb) Bdbw(1px) Bdbs(s) Bdc($seperatorColor) H(36px) ");
+                System.out.println("|------------------------------------------------|");
+                for(Element a: contentA)
+                System.out.println("| Name: "+a.text());
+                for(Element c: contentC)
+                System.out.println("| "+c.text());
+                System.out.println("|------------------------------------------------|");
+}               
 }  
 
+//34
