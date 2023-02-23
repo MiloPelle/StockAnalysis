@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 public class SearchStock {
     public static void search() throws IOException{  
+        int i = 0;
         String tickerSymbol;
         System.out.println("");
         System.out.println("Enter Ticker Sysmbol:");
@@ -32,6 +33,24 @@ public class SearchStock {
                 for(Element c: contentC)
                 System.out.println("| "+c.text());
                 System.out.println("|------------------------------------------------|");
+                System.out.println("|                     Options:                   |");
+                System.out.println("|------------------------------------------------|");
+                System.out.println("|                  1. Save Stock                 |");
+                System.out.println("|                  2. Pend Stock                 |");
+                System.out.println("|                     3. Home                    |");
+                System.out.println("|              4. Find Another Stock             |");
+                System.out.println("|                 5. Update Info                 |");
+                System.out.println("|------------------------------------------------|");
+        try (Scanner stockOptions = new Scanner(System.in)){
+           String stockOp = stockOptions.next();
+           if(stockOp=="1"){
+
+            Data.loadPort();
+            Data.i=i+1;
+           }
+
+
+        }
 }               
 }  
 
