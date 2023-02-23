@@ -4,11 +4,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;  
 import org.jsoup.Jsoup;  
-import org.jsoup.nodes.Document;  
+import org.jsoup.nodes.Document;
+
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
@@ -44,9 +48,11 @@ public class SearchStock {
         try (Scanner stockOptions = new Scanner(System.in)){
            String stockOp = stockOptions.next();
            if(stockOp=="1"){
+            FileOutputStream pendsAA = new FileOutputStream("pendsave.dat");
+            BufferedOutputStream pendsAB = new BufferedOutputStream(pendsAA);
+            ObjectOutputStream pendsAC = new ObjectOutputStream(pendsAB);
+            DataStorage pendStorage = new DataStorage();
 
-            Data.loadPort();
-            Data.i=i+1;
            }
 
 
