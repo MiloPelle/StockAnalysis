@@ -26,6 +26,7 @@ public class Home{
             }else if(option.equals("3")){
                 System.out.println("Not Availible");
             }
+        choseOption.close();
         }
     }
         }
