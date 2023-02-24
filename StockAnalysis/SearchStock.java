@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class SearchStock {
     public static void search() throws IOException{  
-        String stockURL = URL;
         String tickerSymbol;
         System.out.println("");
         System.out.println("Enter Ticker Sysmbol:");
