@@ -8,10 +8,12 @@ import org.jsoup.nodes.Document;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 
 public class SearchStock {
-    public static void search() throws IOException{  
+    public static void search() throws IOException, NoSuchElementException{  
         String tickerSymbol;
+        String option;
         System.out.println("");
         System.out.println("Enter Ticker Sysmbol:");
         try (Scanner tikSymbol = new Scanner(System.in)) {
@@ -24,7 +26,7 @@ public class SearchStock {
         Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
         Elements contentC = doc.getElementsByClass("Bxz(bb) Bdbw(1px) Bdbs(s) Bdc($seperatorColor) H(36px) ");
         System.out.println("|------------------------------------------------|");
-        for(Element a: contentA)
+        for(Element a: contentA){
         System.out.println("| Name: "+a.text());
         for(Element c: contentC)
         System.out.println("| "+c.text());
@@ -37,38 +39,22 @@ public class SearchStock {
         System.out.println("|              4. Find Another Stock             |");
         System.out.println("|                 5. Update Info                 |");
         System.out.println("|------------------------------------------------|");
-        try (Scanner stockOptions = new Scanner(System.in)){
-        String stockOp = stockOptions.next();
-           if(stockOp=="1"){
-                BufferedWriter saveStockData = new BufferedWriter(new FileWriter("saveStockData.txt"));
-                BufferedWriter stockNames = new BufferedWriter(new FileWriter("stockNames.txt"));
-                for(Element a: contentA)
-                stockNames.write(a.text());
-                saveStockData.write(URL);
-                stockNames.newLine();
-                saveStockData.newLine();
-                stockNames.close();
-                saveStockData.close();
-                saves.aa++;
-                saves.ab++;
-            }else if(stockOp=="2"){
-                BufferedWriter savePendData = new BufferedWriter(new FileWriter("savePendData.txt"));
-                BufferedWriter pendNames = new BufferedWriter(new FileWriter("pendNames.txt"));
-                for(Element a: contentA)
-                pendNames.write(a.text());
-                savePendData.write(URL);
-                savePendData.newLine();
-                pendNames.newLine();
-                pendNames.close();
-                savePendData.close();
-                pends.ba++;
-                pends.bb++;
+        }
+    
+    try (Scanner choseOption = new Scanner(System.in)) {
+            option = choseOption.next();
+            if(option.equals("1")){
+               System.out.println("pls work");
+            }else if(option.equals("2")){
+               System.out.println("Not Availible");
+            }else if(option.equals("3")){
+                System.out.println("Not Availible");
             }
-        stockOptions.close();    
-    }
-} catch (IOException e){
-    e.printStackTrace();
+            choseOption.close();
+        }
 }
-}        
-
-
+}
+          
+    
+    
+    

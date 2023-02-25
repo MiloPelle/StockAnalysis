@@ -15,12 +15,12 @@ public class saves {
 
         try{
             try (BufferedReader gatherStocks = new BufferedReader(new FileReader("stockNames.txt"))) {
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            
         }finally{
 
         }
+    }finally{
+        
+    }
     }
 }
