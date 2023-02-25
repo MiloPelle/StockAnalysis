@@ -18,8 +18,7 @@ public class SearchStock {
         System.out.println("Enter Ticker Sysmbol:");
         try (Scanner tikSymbol = new Scanner(System.in)) {
         tickerSymbol = tikSymbol.next();
-        tikSymbol.close();
-    }
+        
         String URL = "http://finance.yahoo.com/quote/"+tickerSymbol+"?p="+tickerSymbol+"&.tsrc=fin-srch";
         System.out.println("Gathering Stock Info");
         Document doc = Jsoup.connect(URL).get();
@@ -39,19 +38,26 @@ public class SearchStock {
         System.out.println("|              4. Find Another Stock             |");
         System.out.println("|                 5. Update Info                 |");
         System.out.println("|------------------------------------------------|");
-        }
+        
     
-    try (Scanner choseOption = new Scanner(System.in)) {
-            option = choseOption.next();
+            option = tikSymbol.next();
             if(option.equals("1")){
-               System.out.println("pls work");
+               BufferedWriter saveInfo = new BufferedWriter(new FileWriter("stockInfo.txt"));
+               BufferedWriter saveName = new BufferedWriter(new FileWriter("stockNames.txt"));
+               saveInfo.write(URL);
+               saveName.write(a.text());
+               saveInfo.newLine();
+               saveName.newLine();
+               saveInfo.close();
+               saveName.close();
             }else if(option.equals("2")){
                System.out.println("Not Availible");
             }else if(option.equals("3")){
                 System.out.println("Not Availible");
             }
-            choseOption.close();
+            tikSymbol.close();
         }
+    }
 }
 }
           
