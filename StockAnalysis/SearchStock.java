@@ -41,15 +41,33 @@ public class SearchStock {
         String stockOp = stockOptions.next();
            if(stockOp=="1"){
                 BufferedWriter saveStockData = new BufferedWriter(new FileWriter("saveStockData.txt"));
+                BufferedWriter stockNames = new BufferedWriter(new FileWriter("stockNames.txt"));
+                for(Element a: contentA)
+                stockNames.write(a.text());
                 saveStockData.write(URL);
+                stockNames.newLine();
+                saveStockData.newLine();
+                stockNames.close();
                 saveStockData.close();
+                saves.aa++;
+                saves.ab++;
             }else if(stockOp=="2"){
                 BufferedWriter savePendData = new BufferedWriter(new FileWriter("savePendData.txt"));
+                BufferedWriter pendNames = new BufferedWriter(new FileWriter("pendNames.txt"));
+                for(Element a: contentA)
+                pendNames.write(a.text());
                 savePendData.write(URL);
+                savePendData.newLine();
+                pendNames.newLine();
+                pendNames.close();
                 savePendData.close();
+                pends.ba++;
+                pends.bb++;
             }
         stockOptions.close();    
     }
+} catch (IOException e){
+    e.printStackTrace();
 }
 }        
 
