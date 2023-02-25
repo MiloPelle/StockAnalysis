@@ -11,16 +11,20 @@ import java.util.Scanner;
 import java.util.NoSuchElementException;
 
 public class SearchStock {
-    public static void search() throws IOException, NoSuchElementException{  
+
+    public static String URL;
+
+    public static void search() throws IOException, NoSuchElementException{ 
+
         String tickerSymbol;
         String option;
         System.out.println("");
         System.out.println("Enter Ticker Sysmbol:");
         try (Scanner tikSymbol = new Scanner(System.in)) {
         tickerSymbol = tikSymbol.next();
-        
-        String URL = "http://finance.yahoo.com/quote/"+tickerSymbol+"?p="+tickerSymbol+"&.tsrc=fin-srch";
-        System.out.println("Gathering Stock Info");
+      
+        URL = "http://finance.yahoo.com/quote/"+tickerSymbol+"?p="+tickerSymbol+"&.tsrc=fin-srch";
+        System.out.println("Gathering Stock Info...");
         Document doc = Jsoup.connect(URL).get();
         Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
         Elements contentC = doc.getElementsByClass("Bxz(bb) Bdbw(1px) Bdbs(s) Bdc($seperatorColor) H(36px) ");
@@ -42,18 +46,21 @@ public class SearchStock {
     
             option = tikSymbol.next();
             if(option.equals("1")){
-               BufferedWriter saveInfo = new BufferedWriter(new FileWriter("stockInfo.txt"));
                BufferedWriter saveName = new BufferedWriter(new FileWriter("stockNames.txt"));
-               saveInfo.write(URL);
                saveName.write(a.text());
-               saveInfo.newLine();
                saveName.newLine();
-               saveInfo.close();
                saveName.close();
             }else if(option.equals("2")){
-               System.out.println("Not Availible");
+               BufferedWriter pendNames = new BufferedWriter(new FileWriter("pendNames.txt"));
+               pendNames.write(a.text());
+               pendNames.newLine();
+               pendNames.close();
             }else if(option.equals("3")){
-                System.out.println("Not Availible");
+                Home.home();
+            }else if(option.equals("4")){
+                search();
+            }else if(option.equals("5")){
+                updateSearchedStock.uss();
             }
             tikSymbol.close();
         }
