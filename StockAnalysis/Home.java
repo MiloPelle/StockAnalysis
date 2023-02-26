@@ -48,9 +48,11 @@ public class Home{
             if(option.equals("1")){
                SearchStock.search();
             }else if(option.equals("2")){
-               System.out.println("Not Availible");
+                saves.gatherSavedStocks();
             }else if(option.equals("3")){
                 System.out.println("Not Availible");
+            }else if(option.equals("4")){
+                
             }
             choseOption.close();
        }

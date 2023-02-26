@@ -47,14 +47,16 @@ public class SearchStock {
             option = tikSymbol.next();
             if(option.equals("1")){
                BufferedWriter saveName = new BufferedWriter(new FileWriter("stockNames.txt"));
-               saveName.write(a.text());
+               saveName.write(tickerSymbol);
                saveName.newLine();
                saveName.close();
+               Home.home();
             }else if(option.equals("2")){
                BufferedWriter pendNames = new BufferedWriter(new FileWriter("pendNames.txt"));
-               pendNames.write(a.text());
+               pendNames.write(tickerSymbol);
                pendNames.newLine();
                pendNames.close();
+               Home.home();
             }else if(option.equals("3")){
                 Home.home();
             }else if(option.equals("4")){

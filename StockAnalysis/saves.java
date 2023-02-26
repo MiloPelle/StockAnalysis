@@ -15,8 +15,8 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class saves {
-
-    public void gatherSavedStocks() throws FileNotFoundException, IOException {
+static String URL;
+    public static void gatherSavedStocks() throws FileNotFoundException, IOException {
         System.out.println("Gathering Saved Stocks...");
         System.out.println("...");
         System.out.println("...");
@@ -33,7 +33,7 @@ public class saves {
         if(observer.equals("")){
             gatherStocks.close();
             System.out.println("Loaded Stocks");
-            System.out.println("If Their Is No Stocks Popping Up, You Have No Save Stocks");            
+            System.out.println("If Their Is No Stocks Popping Up, You Have No Saved Stocks");            
         }else{
             Document doc = Jsoup.connect(observer).get();
             Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
@@ -41,6 +41,7 @@ public class saves {
             for(Element a: contentA){
             i++;
             System.out.println("| "+i+". Name: "+a.text());
+            gatherLoop();
             }
         }
             System.out.println("|--------------------------------------------------------------------|");
@@ -56,7 +57,7 @@ public class saves {
                 int stockNum = saveOp.nextInt();
                 Stream<String> lines = Files.lines(Paths.get("stockNames.txt"));
                 String URLkey = lines.skip(stockNum).findFirst().get();
-                String URL = "http://finance.yahoo.com/quote/"+URLkey+"?p="+URLkey+"&.tsrc=fin-srch";
+                URL = "http://finance.yahoo.com/quote/"+URLkey+"?p="+URLkey+"&.tsrc=fin-srch";
             
             }else if(saveOpIn==2){
             Home.home();
@@ -65,6 +66,25 @@ public class saves {
     }
     public static void StockDetailes() throws IOException, NoSuchElementException{
         String URL = saves.URL;
+        System.out.println("Gathering Stock Info...");
+        Document doc = Jsoup.connect(URL).get();
+        Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
+        Elements contentC = doc.getElementsByClass("Bxz(bb) Bdbw(1px) Bdbs(s) Bdc($seperatorColor) H(36px) ");
+        System.out.println("|------------------------------------------------|");
+        for(Element a: contentA){
+        System.out.println("| Name: "+a.text());
+        for(Element c: contentC)
+        System.out.println("| "+c.text());
+        System.out.println("|------------------------------------------------|");
+        System.out.println("|                     Options:                   |");
+        System.out.println("|------------------------------------------------|");
+        System.out.println("|                  1. Save Stock                 |");
+        System.out.println("|                  2. Pend Stock                 |");
+        System.out.println("|                     3. Home                    |");
+        System.out.println("|              4. Find Another Stock             |");
+        System.out.println("|                 5. Update Info                 |");
+        System.out.println("|------------------------------------------------|");
     }
+}
 }
 
