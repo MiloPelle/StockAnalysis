@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 
 public class saves {
 static String URL;
+
     public static void gatherSavedStocks() throws FileNotFoundException, IOException {
         System.out.println("Gathering Saved Stocks...");
         System.out.println("...");
@@ -25,22 +26,24 @@ static String URL;
         gatherLoop();
     }
     
-    public static void gatherLoop() throws FileNotFoundException, IOException{
-        int i=0;
+    public static void gatherLoop() throws NoSuchElementException, IOException{
+        int a;
+        int i=1+a;
         BufferedReader gatherStocks = new BufferedReader(new FileReader("stockNames.txt"));
-        String observer = gatherStocks.readLine();
+        Stream<String> load = Files.lines(Paths.get("stockNames.txt"));
+        String loadString = load.skip(i+1).findFirst().get();
         
-        if(observer.equals("")){
+        if(loadString.equals("")){
             gatherStocks.close();
             System.out.println("Loaded Stocks");
             System.out.println("If Their Is No Stocks Popping Up, You Have No Saved Stocks");            
         }else{
-            String glURL = "http://finance.yahoo.com/quote/"+observer+"?p="+observer+"&.tsrc=fin-srch";
+            String glURL = "http://finance.yahoo.com/quote/"+loadString+"?p="+loadString+"&.tsrc=fin-srch";
             Document doc = Jsoup.connect(glURL).get();
             Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
             System.out.println("|------------------------------------------------|");
             for(Element a: contentA){
-            i++;
+            a++;
             System.out.println("| "+i+". Name: "+a.text());
             gatherStocks.readLine();
             gatherLoop();
