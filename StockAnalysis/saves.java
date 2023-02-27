@@ -35,15 +35,18 @@ static String URL;
             System.out.println("Loaded Stocks");
             System.out.println("If Their Is No Stocks Popping Up, You Have No Saved Stocks");            
         }else{
-            Document doc = Jsoup.connect(observer).get();
+            String glURL = "http://finance.yahoo.com/quote/"+observer+"?p="+observer+"&.tsrc=fin-srch";
+            Document doc = Jsoup.connect(glURL).get();
             Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
             System.out.println("|------------------------------------------------|");
             for(Element a: contentA){
             i++;
             System.out.println("| "+i+". Name: "+a.text());
+            gatherStocks.readLine();
             gatherLoop();
             }
         }
+            gatherStocks.close();
             System.out.println("|--------------------------------------------------------------------|");
             System.out.println("|                               Options:                             |");
             System.out.println("|--------------------------------------------------------------------|");
