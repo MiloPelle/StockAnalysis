@@ -78,13 +78,22 @@ static String URL;
         System.out.println("|------------------------------------------------|");
         System.out.println("|                     Options:                   |");
         System.out.println("|------------------------------------------------|");
-        System.out.println("|                  1. Save Stock                 |");
-        System.out.println("|                  2. Pend Stock                 |");
+        System.out.println("|                     1. Back                    |");
+        System.out.println("|                    2. Delete                   |");
         System.out.println("|                     3. Home                    |");
-        System.out.println("|              4. Find Another Stock             |");
-        System.out.println("|                 5. Update Info                 |");
         System.out.println("|------------------------------------------------|");
+        Scanner sds = new Scanner(System.in);
+        String sdss = sds.next();
+        if(sdss.equals("1")){
+            gatherSavedStocks();
+        }else if(sdss.equals("2")){
+            delete();
+        }else if(sdss.equals("3")){
+            Home.home();
+        }
     }
 }
-}
+    public static void delete() throws IOException, NoSuchElementException{
 
+    }
+}
