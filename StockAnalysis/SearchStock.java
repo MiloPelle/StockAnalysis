@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 public class SearchStock {
 
     public static String URL;
+    public static String tickerSymbol;
 
     public static void search() throws IOException, NoSuchElementException{ 
 
