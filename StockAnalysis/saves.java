@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 public class saves {
 static String URL;
-
+static int i=0;
     public static void gatherSavedStocks() throws FileNotFoundException, IOException {
         System.out.println("Gathering Saved Stocks...");
         System.out.println("...");
@@ -27,11 +27,10 @@ static String URL;
     }
     
     public static void gatherLoop() throws NoSuchElementException, IOException{
-        int a;
-        int i=1+a;
-        BufferedReader gatherStocks = new BufferedReader(new FileReader("stockNames.txt"));
+        BufferedReader gatherStocks = new BufferedReader(new FileReader("stockNum.txt"));
+        int i = gatherStocks.readLine();
         Stream<String> load = Files.lines(Paths.get("stockNames.txt"));
-        String loadString = load.skip(i+1).findFirst().get();
+        String loadString = load.skip(i).findFirst().get();
         
         if(loadString.equals("")){
             gatherStocks.close();
@@ -43,7 +42,6 @@ static String URL;
             Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
             System.out.println("|------------------------------------------------|");
             for(Element a: contentA){
-            a++;
             System.out.println("| "+i+". Name: "+a.text());
             gatherStocks.readLine();
             gatherLoop();
