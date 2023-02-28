@@ -43,7 +43,6 @@ static int i=0;
             System.out.println("|------------------------------------------------|");
             for(Element a: contentA){
             System.out.println("| "+i+". Name: "+a.text());
-            gatherStocks.readLine();
             gatherLoop();
             }
         }
