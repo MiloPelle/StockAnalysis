@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Home{
 
     public static void main(String[] args) throws IOException{            
-
+        //Home Screen
         System.out.printf("--------------------------------%n");
         System.out.printf("         Stock Analysis         %n");
         System.out.printf("       By: Milo Peleltier       %n");
@@ -17,7 +17,7 @@ public class Home{
         System.out.printf("       3. Pending Stocks        %n");
         System.out.printf("       4. About/Crededentials   %n");
         System.out.printf("--------------------------------%n");
-        
+        //makes new scanner for the option menu
        try (Scanner choseOption = new Scanner(System.in)) {
             String option = choseOption.next();
             if(option.equals("1")){
@@ -31,6 +31,7 @@ public class Home{
         }
     }
     public static void home() throws IOException{
+        //Home Screen Duplicate Because Cannot Call Main Method Again
         System.out.printf("--------------------------------%n");
         System.out.printf("         Stock Analysis         %n");
         System.out.printf("       By: Milo Peleltier       %n");
@@ -42,7 +43,7 @@ public class Home{
         System.out.printf("       3. Pending Stocks        %n");
         System.out.printf("       4. About/Crededentials   %n");
         System.out.printf("--------------------------------%n");
-        
+        //duplicate option scanner
        try (Scanner choseOption = new Scanner(System.in)) {
             String option = choseOption.next();
             if(option.equals("1")){

@@ -27,11 +27,9 @@ static int i=0;
     }
     
     public static void gatherLoop() throws NoSuchElementException, IOException{
-        BufferedReader gatherStocks = new BufferedReader(new FileReader("stockNum.txt"));
-        int i = gatherStocks.readLine();
+        BufferedReader gatherStocks = new BufferedReader(new FileReader("stockNames.txt"));
         Stream<String> load = Files.lines(Paths.get("stockNames.txt"));
         String loadString = load.skip(i).findFirst().get();
-        
         if(loadString.equals("")){
             gatherStocks.close();
             System.out.println("Loaded Stocks");
@@ -42,11 +40,11 @@ static int i=0;
             Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
             System.out.println("|------------------------------------------------|");
             for(Element a: contentA){
+            i++;
             System.out.println("| "+i+". Name: "+a.text());
             gatherLoop();
             }
         }
-            gatherStocks.close();
             System.out.println("|--------------------------------------------------------------------|");
             System.out.println("|                               Options:                             |");
             System.out.println("|--------------------------------------------------------------------|");
