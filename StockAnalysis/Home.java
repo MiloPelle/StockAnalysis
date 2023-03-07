@@ -1,10 +1,11 @@
 package StockAnalysis;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Home{
 
-    public static void main(String[] args) throws IOException{            
+    public static void main(String[] args) throws IOException, NoSuchElementException{            
         //Home Screen
         System.out.printf("--------------------------------%n");
         System.out.printf("         Stock Analysis         %n");

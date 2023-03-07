@@ -1,8 +1,10 @@
 package StockAnalysis;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;  
 import org.jsoup.nodes.Document;
 import java.io.BufferedReader;
+import java.io.File;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.FileNotFoundException;
@@ -16,35 +18,39 @@ import java.util.stream.Stream;
 
 public class saves {
 static String URL;
-static int i=0;
+private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.tsrc=fin-srch";
+
     public static void gatherSavedStocks() throws FileNotFoundException, IOException {
         System.out.println("Gathering Saved Stocks...");
         System.out.println("...");
         System.out.println("...");
         System.out.println("...");
         System.out.println("This Might take A While");
-        gatherLoop();
+        showName(TEMPLATE);
+        extractSaves();
     }
     
-    public static void gatherLoop() throws NoSuchElementException, IOException{
-        BufferedReader gatherStocks = new BufferedReader(new FileReader("stockNames.txt"));
-        Stream<String> load = Files.lines(Paths.get("stockNames.txt"));
-        String loadString = load.skip(i).findFirst().get();
-        if(loadString.equals("")){
-            gatherStocks.close();
-            System.out.println("Loaded Stocks");
-            System.out.println("If Their Is No Stocks Popping Up, You Have No Saved Stocks");            
-        }else{
-            String glURL = "http://finance.yahoo.com/quote/"+loadString+"?p="+loadString+"&.tsrc=fin-srch";
-            Document doc = Jsoup.connect(glURL).get();
+
+        public static void showName(String name) throws IOException {
+            String url = String.format(TEMPLATE, name, name);
+            Connection conn = Jsoup.connect(url);
+            Document doc = conn.get(); // throws java.io.IOException
             Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
-            System.out.println("|------------------------------------------------|");
-            for(Element a: contentA){
-            i++;
-            System.out.println("| "+i+". Name: "+a.text());
-            gatherLoop();
+            for (Element a : contentA) {
+                System.out.println(a.text());
             }
         }
+    
+    
+        public static void extractSaves() throws IOException {
+            try (Scanner gatherStocks = new Scanner(new File("stocknames.txt"))) {
+                while (gatherStocks.hasNextLine()) {
+                    String name = gatherStocks.nextLine();
+                    showName(name);
+                }
+            }
+    
+        
             System.out.println("|--------------------------------------------------------------------|");
             System.out.println("|                               Options:                             |");
             System.out.println("|--------------------------------------------------------------------|");
