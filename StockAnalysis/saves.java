@@ -27,11 +27,14 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
         System.out.println("...");
         System.out.println("This Might take A While");
         showName(TEMPLATE);
-        extractSaves();
     }
     
 
         public static void showName(String name) throws IOException {
+            try (Scanner gatherStocks = new Scanner(new File("stocknames.txt"))) {
+                while (gatherStocks.hasNextLine()) {
+                    name = gatherStocks.nextLine();
+                }
             String url = String.format(TEMPLATE, name, name);
             Connection conn = Jsoup.connect(url);
             Document doc = conn.get(); // throws java.io.IOException
@@ -42,13 +45,7 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
         }
     
     
-        public static void extractSaves() throws IOException {
-            try (Scanner gatherStocks = new Scanner(new File("stocknames.txt"))) {
-                while (gatherStocks.hasNextLine()) {
-                    String name = gatherStocks.nextLine();
-                    showName(name);
-                }
-            }
+            
     
         
             System.out.println("|--------------------------------------------------------------------|");
