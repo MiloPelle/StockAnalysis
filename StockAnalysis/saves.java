@@ -26,23 +26,26 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
         System.out.println("...");
         System.out.println("...");
         System.out.println("This Might take A While");
-        showName(TEMPLATE);
+        sn();
     }
     
 
         public static void showName(String name) throws IOException {
-            try (Scanner gatherStocks = new Scanner(new File("stocknames.txt"))) {
-                while (gatherStocks.hasNextLine()) {
-                    name = gatherStocks.nextLine();
+                String url = String.format(TEMPLATE, name, name);
+                Connection conn = Jsoup.connect(url);
+                Document doc = conn.get(); // throws java.io.IOException
+                Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
+                for (Element a : contentA) {
+                    System.out.println(a.text());
                 }
-            String url = String.format(TEMPLATE, name, name);
-            Connection conn = Jsoup.connect(url);
-            Document doc = conn.get(); // throws java.io.IOException
-            Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
-            for (Element a : contentA) {
-                System.out.println(a.text());
             }
-        }
+            public static void sn() throws IOException {
+                try (Scanner gatherStocks = new Scanner(new File("stocknames.txt"))) {
+                    while (gatherStocks.hasNextLine()) {
+                        String name = gatherStocks.nextLine();
+                        showName(name);
+                    }
+                }
     
     
             
@@ -62,6 +65,8 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
                 Stream<String> lines = Files.lines(Paths.get("stockNames.txt"));
                 String URLkey = lines.skip(stockNum).findFirst().get();
                 URL = "http://finance.yahoo.com/quote/"+URLkey+"?p="+URLkey+"&.tsrc=fin-srch";
+                lines.close();
+                StockDetailes();
             
             }else if(saveOpIn==2){
             Home.home();
@@ -95,6 +100,7 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
         }else if(sdss.equals("3")){
             Home.home();
         }
+        sds.close();
     }
 }
     public static void delete() throws IOException, NoSuchElementException{
