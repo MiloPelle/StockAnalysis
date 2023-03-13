@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -49,12 +50,21 @@ public class SearchStock {
         
     
             option = tikSymbol.next();
+            FileWriter saveName = new FileWriter("stockNames.txt");
+               FileReader blank = new FileReader("stockNames.txt");
+               saveName.write("%n");
+               String blanks = blank.nextLine();
             if(option.equals("1")){
-               BufferedWriter saveName = new BufferedWriter(new FileWriter("stockNames.txt"));
-               saveName.write(tickerSymbol);
-               saveName.newLine();
-               saveName.close();
-               Home.home();               
+               while(blank.hasNextLine()){
+                if(blanks.isEmpty()){
+                    Home.home();
+                }else{
+                    saveName.write(tickerSymbol);
+                    blank.nextLine();
+                }
+               }
+               blank.close();
+               saveName.close();            
             }else if(option.equals("2")){
                BufferedWriter pendNames = new BufferedWriter(new FileWriter("pendNames.txt"));
                pendNames.write(tickerSymbol);
