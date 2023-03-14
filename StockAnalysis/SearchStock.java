@@ -51,17 +51,15 @@ public class SearchStock {
     
             option = tikSymbol.next();
             FileWriter saveName = new FileWriter("stockNames.txt");
-               FileReader blank = new FileReader("stockNames.txt");
+            BufferedReader save = new BufferedReader(new FileReader("stockNames.txt"));
+            BufferedWriter writeSave = new BufferedWriter(new FileWriter("stockNames.txt"));
+            String last, line;
+               Scanner blank = new Scanner(new FileReader("stockNames.txt"));
                saveName.write("%n");
-               String blanks = blank.nextLine();
+               String blanks = blank.toString();
             if(option.equals("1")){
-               while(blank.hasNextLine()){
-                if(blanks.isEmpty()){
-                    Home.home();
-                }else{
-                    saveName.write(tickerSymbol);
-                    blank.nextLine();
-                }
+               while((line = save.readLine()) != null){
+                last = line;
                }
                blank.close();
                saveName.close();            
