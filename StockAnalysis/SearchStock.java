@@ -5,10 +5,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;  
 import org.jsoup.Jsoup;  
 import org.jsoup.nodes.Document;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.NoSuchElementException;
@@ -19,7 +16,6 @@ public class SearchStock {
     public static String tickerSymbol;
 
     public static void search() throws IOException, NoSuchElementException{ 
-        int i = 0;
         String tickerSymbol;
         String option;
         System.out.println("");
@@ -50,19 +46,17 @@ public class SearchStock {
         
     
             option = tikSymbol.next();
-            FileWriter saveName = new FileWriter("stockNames.txt");
-            BufferedReader save = new BufferedReader(new FileReader("stockNames.txt"));
-            BufferedWriter writeSave = new BufferedWriter(new FileWriter("stockNames.txt"));
-            String last, line;
-               Scanner blank = new Scanner(new FileReader("stockNames.txt"));
-               saveName.write("%n");
-               String blanks = blank.toString();
             if(option.equals("1")){
-               while((line = save.readLine()) != null){
-                last = line;
-               }
-               blank.close();
-               saveName.close();            
+                try{
+                    FileWriter saveName = new FileWriter("stockNames.txt", true);
+                    BufferedWriter writeSave = new BufferedWriter(saveName);
+                    writeSave.write(tickerSymbol);
+                    writeSave.newLine();
+                    writeSave.close();
+                    Home.home();
+                }finally{
+                    
+                }         
             }else if(option.equals("2")){
                BufferedWriter pendNames = new BufferedWriter(new FileWriter("pendNames.txt"));
                pendNames.write(tickerSymbol);
