@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -45,12 +46,7 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
                         String name = gatherStocks.nextLine();
                         showName(name);
                     }
-                }
-    
-    
-            
-    
-        
+                }   
             System.out.println("|--------------------------------------------------------------------|");
             System.out.println("|                               Options:                             |");
             System.out.println("|--------------------------------------------------------------------|");
@@ -63,7 +59,7 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
                 System.out.println("Type Number Corresponding To Your Desired Stock");
                 int stockNum = saveOp.nextInt();
                 Stream<String> lines = Files.lines(Paths.get("stockNames.txt"));
-                String URLkey = lines.skip(stockNum).findFirst().get();
+                String URLkey = lines.skip(stockNum-1).findFirst().get();
                 URL = "http://finance.yahoo.com/quote/"+URLkey+"?p="+URLkey+"&.tsrc=fin-srch";
                 lines.close();
                 StockDetailes();
@@ -103,7 +99,6 @@ private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.
         sds.close();
     }
 }
-    public static void delete() throws IOException, NoSuchElementException{
-
+    public static void delete() {
     }
 }

@@ -58,11 +58,16 @@ public class SearchStock {
                     
                 }         
             }else if(option.equals("2")){
-               BufferedWriter pendNames = new BufferedWriter(new FileWriter("pendNames.txt"));
-               pendNames.write(tickerSymbol);
-               pendNames.newLine();
-               pendNames.close();
-               Home.home();
+                try{
+                    FileWriter pendName = new FileWriter("pendNames.txt", true);
+                    BufferedWriter writePend = new BufferedWriter(pendName);
+                    writePend.write(tickerSymbol);
+                    writePend.newLine();
+                    writePend.close();
+                    Home.home();
+                }finally{
+                    
+                }  
             }else if(option.equals("3")){
                 Home.home();
             }else if(option.equals("4")){
