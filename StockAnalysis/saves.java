@@ -35,7 +35,7 @@ static String URLkey;
         public static void showName(String name) throws IOException {
                 String url = String.format(TEMPLATE, name, name);
                 Connection conn = Jsoup.connect(url);
-                Document doc = conn.get(); // throws java.io.IOException
+                Document doc = conn.get();
                 Elements contentA = doc.getElementsByClass("D(ib) Fz(18px)");
                 for (Element a : contentA) {
                     System.out.println(a.text());
