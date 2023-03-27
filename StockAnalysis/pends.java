@@ -44,9 +44,11 @@ public class pends {
                     }
                 }
                 public static void sn() throws IOException {
+                System.out.println();
                     try (Scanner gatherStocks = new Scanner(new File("stockNames.txt"))) {
                         while (gatherStocks.hasNextLine()) {
                             String name = gatherStocks.nextLine();
+                            System.out.println("|--------------------------------------------------------------------|");
                             showName(name);
                         }
                     }   
@@ -59,7 +61,8 @@ public class pends {
                 Scanner saveOp = new Scanner(System.in);
                 int saveOpIn = saveOp.nextInt();
                 if(saveOpIn==1){
-                    System.out.println("Type Number Corresponding To Your Desired Stock");
+                    
+                    System.out.println("Type Number Corresponding To Your Desired Stock:");
                     int stockNum = saveOp.nextInt();
                     Stream<String> lines = Files.lines(Paths.get("stockNames.txt"));
                     URLkey = lines.skip(stockNum-1).findFirst().get();

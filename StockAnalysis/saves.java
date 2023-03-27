@@ -45,6 +45,7 @@ static String URLkey;
                 try (Scanner gatherStocks = new Scanner(new File("stockNames.txt"))) {
                     while (gatherStocks.hasNextLine()) {
                         String name = gatherStocks.nextLine();
+                        System.out.println("|--------------------------------------------------------------------|");
                         showName(name);
                     }
                 }   

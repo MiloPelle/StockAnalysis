@@ -26,7 +26,7 @@ public class Home{
             }else if(option.equals("2")){
                saves.gatherSavedStocks();
             }else if(option.equals("3")){
-                System.out.println("Not Availible");
+                pends.gatherSavedStocks();
             }
         choseOption.close();
         }
