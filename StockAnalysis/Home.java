@@ -1,11 +1,11 @@
 package StockAnalysis;
+
 import java.io.IOException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Home{
 
-    public static void main(String[] args) throws IOException, NoSuchElementException{            
+    public static void main(String[] args) throws IOException{            
         //Home Screen
         System.out.printf("--------------------------------%n");
         System.out.printf("         Stock Analysis         %n");
@@ -45,18 +45,22 @@ public class Home{
         System.out.printf("       4. About/Crededentials   %n");
         System.out.printf("--------------------------------%n");
         //duplicate option scanner
-       try (Scanner choseOption = new Scanner(System.in)) {
+        
+        try (Scanner choseOption = new Scanner(System.in)) {
             String option = choseOption.next();
             if(option.equals("1")){
                SearchStock.search();
             }else if(option.equals("2")){
                 saves.gatherSavedStocks();
             }else if(option.equals("3")){
-                System.out.println("Not Availible");
+                pends.gatherSavedStocks();
             }else if(option.equals("4")){
-                
-            }
-            choseOption.close();
+                Crededentials.credits();
+                choseOption.close();
        }
+    }catch (InputMismatchException e){
+    System.out.println("Invalid Response");
+    Home.home();;
+        }
     }
 }

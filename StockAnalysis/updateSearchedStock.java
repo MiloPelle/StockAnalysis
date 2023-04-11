@@ -2,17 +2,18 @@ package StockAnalysis;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.IOException;  
+import java.io.IOException;
+
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;  
 import org.jsoup.nodes.Document;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Scanner;
-import java.util.NoSuchElementException;
 
 public class updateSearchedStock{
 
-public static void uss() throws IOException, NoSuchElementException{
+public static void uss() throws IOException{
 
     String URL = SearchStock.URL;
     System.out.println("Gathering Stock Info...");
@@ -34,6 +35,20 @@ public static void uss() throws IOException, NoSuchElementException{
     System.out.println("|                 5. Update Info                 |");
     System.out.println("|------------------------------------------------|");
     
+    Connection.Response response = null;
+    try {
+        response = Jsoup.connect(URL)
+                .userAgent("Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5")
+                .timeout(100000)
+                .ignoreHttpErrors(true) 
+                .execute();
+    } catch (IOException e) {
+        System.out.println("io - "+e);
+    }
+
+    System.out.println("Status code = " + response.statusCode());   
+    System.out.println("Status msg  = " + response.statusMessage());
+
     String tickerSymbol = SearchStock.tickerSymbol;
     Scanner usso = new Scanner(System.in);
     String option = usso.next();

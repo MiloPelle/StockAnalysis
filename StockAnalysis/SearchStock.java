@@ -10,14 +10,13 @@ import org.jsoup.nodes.Document;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Scanner;
-import java.util.NoSuchElementException;
 
 public class SearchStock {
 
     public static String URL;
     public static String tickerSymbol;
 
-    public static void search() throws IOException, NoSuchElementException{ 
+    public static void search() throws IOException{ 
         String tickerSymbol;
         String option;
         System.out.println("");
@@ -36,6 +35,19 @@ public class SearchStock {
         System.out.println("| Name: "+a.text());
         for(Element c: contentC)
         System.out.println("| "+c.text());
+        Connection.Response response = null;
+            try {
+                response = Jsoup.connect(URL)
+                        .userAgent("Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5")
+                        .timeout(100000)
+                        .ignoreHttpErrors(true) 
+                        .execute();
+            } catch (IOException e) {
+                System.out.println("io - "+e);
+            }
+
+            System.out.println("Status code = " + response.statusCode());   
+            System.out.println("Status msg  = " + response.statusMessage());
         System.out.println("|------------------------------------------------|");
         System.out.println("|                     Options:                   |");
         System.out.println("|------------------------------------------------|");
@@ -46,7 +58,6 @@ public class SearchStock {
         System.out.println("|                 5. Update Info                 |");
         System.out.println("|------------------------------------------------|");
         
-    
             option = tikSymbol.next();
             if(option.equals("1")){
                 try{
@@ -82,8 +93,3 @@ public class SearchStock {
     }
 }
 }
-
-          
-    
-    
-    

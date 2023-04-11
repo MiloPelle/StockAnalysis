@@ -6,7 +6,6 @@ import org.jsoup.nodes.Document;
 import java.io.File;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -22,7 +21,7 @@ static String URL;
 private static final String TEMPLATE = "http://finance.yahoo.com/quote/%s?p=%s&.tsrc=fin-srch";
 static String URLkey;
 
-    public static void gatherSavedStocks() throws FileNotFoundException, IOException {
+    public static void gatherSavedStocks() throws IOException {
         System.out.println("Gathering Saved Stocks...");
         System.out.println("...");
         System.out.println("...");
@@ -47,6 +46,19 @@ static String URLkey;
                         String name = gatherStocks.nextLine();
                         System.out.println("|--------------------------------------------------------------------|");
                         showName(name);
+                        Connection.Response response = null;
+                        try {
+                            response = Jsoup.connect(URL)
+                                    .userAgent("Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5")
+                                    .timeout(100000)
+                                    .ignoreHttpErrors(true) 
+                                    .execute();
+                        } catch (IOException e) {
+                            System.out.println("io - "+e);
+                        }
+                    
+                        System.out.println("Status code = " + response.statusCode());   
+                        System.out.println("Status msg  = " + response.statusMessage());
                     }
                 }   
             System.out.println("|--------------------------------------------------------------------|");
