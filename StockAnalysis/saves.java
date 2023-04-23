@@ -11,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -83,7 +82,7 @@ static String URLkey;
         }
             saveOp.close();        
     }
-    public static void StockDetailes() throws IOException, NoSuchElementException{
+    public static void StockDetailes() throws IOException{
         String URL = saves.URL;
         System.out.println("Gathering Stock Info...");
         Document doc = Jsoup.connect(URL).get();
