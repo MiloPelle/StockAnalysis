@@ -27,7 +27,7 @@ public class Main{
                saves.gatherSavedStocks();
             }else if(option.equals("3")){
                 pends.gatherSavedStocks();
-            }
+            }else if(option.equals("4"))
         choseOption.close();
         }
     }
