@@ -63,7 +63,7 @@ public static void uss() throws IOException{
        pendNames.newLine();
        pendNames.close();
     }else if(option.equals("3")){
-        Home.home();
+        Main.home();
     }else if(option.equals("4")){
         SearchStock.search();
     }else if(option.equals("5")){

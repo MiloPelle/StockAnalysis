@@ -33,7 +33,7 @@ public class Crededentials{
         Scanner creds = new Scanner(System.in);
         credRedirect = creds.nextInt();
         if(credRedirect==1){
-            Home.home();
+            Main.home();
             creds.close();
         }else{
         System.out.println("Invalid Response");

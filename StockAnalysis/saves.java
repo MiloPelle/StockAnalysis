@@ -78,7 +78,7 @@ static String URLkey;
                 StockDetailes();
             
             }else if(saveOpIn==2){
-            Home.home();
+            Main.home();
         }
             saveOp.close();        
     }
@@ -107,7 +107,7 @@ static String URLkey;
         }else if(sdss.equals("2")){
             delete();
         }else if(sdss.equals("3")){
-            Home.home();
+            Main.home();
         }
         sds.close();
     }

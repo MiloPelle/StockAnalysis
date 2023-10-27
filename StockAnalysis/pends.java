@@ -84,7 +84,7 @@ public class pends {
                     StockDetailes();
                 
                 }else if(saveOpIn==2){
-                Home.home();
+                Main.home();
             }
                 saveOp.close();        
         }
@@ -113,7 +113,7 @@ public class pends {
             }else if(sdss.equals("2")){
                 delete();
             }else if(sdss.equals("3")){
-                Home.home();
+                Main.home();
             }
             sds.close();
         }

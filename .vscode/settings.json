@@ -1,8 +1,5 @@
 {
     "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "c:\\Users\\milop\\Downloads\\jsoup-1.15.4.jar",
-        "c:\\Users\\milop\\OneDrive\\Desktop\\jsoup-1.15.4.jar",
-        "c:\\Java\\jdk-19\\jsoup-1.15.4.jar"
+        "libs/jsoup-1.16.2.jar"
     ]
   }

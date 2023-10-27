@@ -66,7 +66,7 @@ public class SearchStock {
                     writeSave.write(tickerSymbol);
                     writeSave.newLine();
                     writeSave.close();
-                    Home.home();
+                    Main.home();
                 }finally{
                     
                 }         
@@ -77,12 +77,12 @@ public class SearchStock {
                     writePend.write(tickerSymbol);
                     writePend.newLine();
                     writePend.close();
-                    Home.home();
+                    Main.home();
                 }finally{
                     
                 }  
             }else if(option.equals("3")){
-                Home.home();
+                Main.home();
             }else if(option.equals("4")){
                 search();
             }else if(option.equals("5")){
